@@ -5,3 +5,23 @@
             </div>
       </div>
 </template>
+
+<script>
+import messages from '@/utils/messages'
+
+export default {
+      computed: {
+            error() {
+                  return this.$store.getters.error
+            }
+      },
+      watch: {
+            error(fberror){
+                  this.$error(messages[fberror.code] || 'Что то пошло не так')
+            }
+
+      }
+}
+</script>
+
+
