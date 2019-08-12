@@ -1,5 +1,5 @@
 import firebase from '@firebase/app'
-import { async } from 'q';
+
 
 export default {
       state: {
@@ -24,6 +24,7 @@ export default {
                         commit('setInfo',info)
                   } catch (error) {
                         console.log(error);
+                        throw error
                         
                   }
                  
@@ -39,6 +40,7 @@ export default {
                   } catch (e) {
                         console.log(e)
                         commit('SetError', e)
+                        throw e
                   }
                   
             }

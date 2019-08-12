@@ -42,7 +42,7 @@ export default {
   computed: {
     ...mapGetters(['info'])
   },
-  async mounted() {
+  async mounted() {   
         const records = await this.$store.dispatch('fetchRecords')
         const categories = await this.$store.dispatch('fetchCategories')
 

@@ -9,8 +9,9 @@ export default {
                         return Object.keys(categories).map( key => ({...categories[key], id:key}))
                          
                   } catch (e) {
+                        console.log(e)
                         commit('setError', e)
-                        throw e
+                        return [] 
                   }
             },
             async createCategory({commit,dispatch}, {title,limit}) {
@@ -31,7 +32,6 @@ export default {
                         
                   } catch (e) {
                         console.log(e);
-                        
                         commit('setError', e)
                         throw e
                   }

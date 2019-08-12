@@ -6,12 +6,13 @@ export default {
                   try {
                         const uid = await dispatch('getUid')
                         return await firebase.database().ref(`/users/${uid}/records`).push(record)
-                        console.log('creterecords');
+                        console.log('creterecords')
                         
                   } catch (error) {
                         console.log(error)
-                        commit('SetError', error)
-                        throw error
+                        commit('setError', error)
+                  
+                      
                         
                   }
             },
@@ -23,7 +24,9 @@ export default {
 
                   } catch (e) {
                         console.log(e)
+                        return []
                         throw e
+
                   }
                   
             } 

@@ -104,7 +104,7 @@ export default {
         if(this.type === "income") {
           return true
         }
-  
+
         return this.info.bill >= this.amount
     }
   },
@@ -144,6 +144,8 @@ export default {
   },
   async mounted() {
     this.categories = await this.$store.dispatch('fetchCategories')
+    console.log('test')
+    
     if(this.categories.length) {
       this.category = this.categories[0].id
     }
@@ -151,7 +153,7 @@ export default {
     setTimeout(() => {
           this.select = M.FormSelect.init(this.$refs.select)
           M.updateTextFields()
-    }, 0);
+    }, 0)
 
   },
   validations: {
