@@ -104,7 +104,7 @@ export default {
         if(this.type === "income") {
           return true
         }
-
+  
         return this.info.bill >= this.amount
     }
   },
