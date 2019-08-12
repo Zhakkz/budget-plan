@@ -1,4 +1,5 @@
 import firebase from '@firebase/app'
+import { async } from 'q';
 
 export default {
       state: {
@@ -16,14 +17,30 @@ export default {
       },
       actions: {
             async fetchinfo({dispatch,commit}) {
-            
-                 const uid = await dispatch('getUid')
+                  try {
+                        console.log('fetchinfo');
+                        const uid = await dispatch('getUid')  
+                        const info = (await firebase.database().ref(`/users/${uid}/info`).once('value')).val()
+                        commit('setInfo',info)
+                  } catch (error) {
+                        console.log(error);
+                        
+                  }
                  
-                 const info = (await firebase.database().ref(`/users/${uid}/info`).once('value')).val()
-                 console.log('fetchinfo')
-                 commit('setInfo',info)
-                 
-                 
+            },
+            async UpdateInfo({dispatch, commit, getters}, toUpdate) {
+                  try {
+                        console.log('UpdateInfo')
+                        const uid = await dispatch('getUid')
+                        const updateData = {...getters.info, ...toUpdate}
+                        
+                        await firebase.database().ref(`/users/${uid}/info`).update(updateData)
+                        commit('setInfo', updateData)
+                  } catch (e) {
+                        console.log(e)
+                        commit('SetError', e)
+                  }
+                  
             }
       },
       getters: {
