@@ -5,6 +5,8 @@ import router from './router'
 import store from './store'
 import dateFilter from '@/filter/date.filter'
 import messagePlugin from '@/utils/message.plugin'
+import currencyFilter from '@/filter/currency.filter'
+import Loader from '@/components/app/Loader'
 import './registerServiceWorker'
 import 'materialize-css/dist/js/materialize.min'
 
@@ -13,11 +15,14 @@ import '@firebase/auth'
 import '@firebase/database'
 
 
+
 Vue.config.productionTip = false
 
 Vue.use(Vuelidate)
 Vue.use(messagePlugin)
 Vue.filter('date', dateFilter)
+Vue.filter('currency', currencyFilter)
+Vue.component('Loader', Loader)
 
 const firebaseConfig = {
   apiKey: "AIzaSyCcA6xw6PnD_OJ4M-9OzlehtagfO9iYGfI",
